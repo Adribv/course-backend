@@ -95,5 +95,7 @@ def get_recommendations():
     
     return jsonify(recommended_courses)
 
+port_number = int(os.getenv('PORT', 5000))
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=port_number)
