@@ -7,6 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from waitress import serve
 
 # Load environment variables from .env file
 load_dotenv()
@@ -95,7 +96,6 @@ def get_recommendations():
     
     return jsonify(recommended_courses)
 
-port_number = int(os.getenv('PORT', 5000))
-
 if __name__ == '__main__':
-    app.run(port=port_number)
+    # Use Waitress to serve the app
+    serve(app, host='0.0.0.0', port=8000)
